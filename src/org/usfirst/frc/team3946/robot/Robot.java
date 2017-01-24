@@ -4,12 +4,16 @@ package org.usfirst.frc.team3946.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3946.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
+import org.usfirst.frc.team3946.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3946.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +26,8 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static driveTrain drivetrain = new driveTrain();
+	
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
