@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +25,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
+	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	
 
 	Command autonomousCommand;
@@ -106,6 +108,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Actual Right Speed",
+				Robot.driveTrainEncoder.getRightRate());
+		SmartDashboard.putNumber("Actual Right Distance",
+				Robot.driveTrainEncoder.getRightDistance());
+		SmartDashboard.putNumber("Actual Left Speed",
+				Robot.driveTrainEncoder.getLeftRate());
+		SmartDashboard.putNumber("Actual Left Distance",
+				Robot.driveTrainEncoder.getLeftDistance());
+
 	}
 
 	/**
