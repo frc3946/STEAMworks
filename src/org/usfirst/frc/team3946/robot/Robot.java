@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3946.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,9 +10,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.imgproc.Imgproc;
+//import org.opencv.core.Mat;
+//import org.opencv.core.Rect;
+//import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -20,6 +21,9 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.vision.VisionRunner;
 import edu.wpi.first.wpilibj.vision.VisionThread;
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
@@ -36,6 +40,25 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
+	
+	// preferences
+	public static Preferences prefs;
+	public static double distanceTarget = 130;
+	public static double distanceOffset = 0;
+	public static double angleMultiplier = 1;
+	public static double angleAddition = 0;
+	public static double distanceMultiplier = 1;
+	public static double distanceAddition = 0;
+	public static double leftInches = 0;
+	public static double rightInches = 0;
+	public static double leftTicks = 0;
+	public static double rightTicks = 0;
+	
+	public static SendableChooser<String> cameraSelector;
+	static String lastSelected = "";
+	static int currSession=0;
+	static int sessionfront=0;
+	static int sessionback=0; 
 	
 //	private static final int IMG_WIDTH = 320;
 //	private static final int IMG_HEIGHT = 240;
@@ -56,10 +79,18 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		CameraServer.getInstance().startAutomaticCapture();
-		
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		cameraSelector = new SendableChooser<String>();
+		cameraSelector.addDefault("Front View", "Front View");
+		cameraSelector.addObject("Back View", "Back View");
+		SmartDashboard.putData("Camera Selector", cameraSelector);		
+	
+	
+		
+	
 	}
 
 	/**
