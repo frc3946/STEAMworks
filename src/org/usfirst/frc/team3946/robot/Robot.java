@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
+	public static ClimbMotor climbmotor = new ClimbMotor();
 	
 
 	Command autonomousCommand;
