@@ -14,7 +14,6 @@ import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
-import org.usfirst.frc.team3946.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +25,6 @@ import org.usfirst.frc.team3946.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static ExampleSubsystem examplesubsystem = new ExampleSubsystem();
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	public static ClimbMotor climbmotor = new ClimbMotor();
