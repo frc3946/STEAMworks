@@ -35,27 +35,17 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	@Override
 	public void robotInit() {
 		oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
-
+	
+	public void autonmousInit() {
+		// schedule the autonomous command () if (autonomousCommand != null) autonomousCommand.start();
 	}
 
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
+	
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
