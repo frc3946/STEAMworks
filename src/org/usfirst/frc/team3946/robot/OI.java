@@ -15,7 +15,8 @@ public class OI {
 	
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
-	Button winchButton = new JoystickButton(driveController0, 3)
+	Button winchButtonUp = new JoystickButton(driveController1, 1);
+	Button winchButtonDown = new JoystickButton(driveController0, 1);
 
 ;	
 	//// CREATING BUTTONS
@@ -47,7 +48,8 @@ public class OI {
 
 
 public OI() {
-	winchButton.whenPressed(new RobotForward());
+	winchButtonUp.whenPressed(new RobotForward());
+	winchButtonDown.whenPressed(new RobotReverse());
 	
 }
 }
