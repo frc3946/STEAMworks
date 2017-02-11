@@ -13,14 +13,14 @@ import edu.wpi.first.wpilibj.Joystick;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
+
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
-	Button winchbutton = new JoystickButton(driveController1, 1);
-	Button winchbutton = new JoystickButton(driveContoller0, 1);
+	Button winchButtonUp = new JoystickButton(driveController1, 1);
+	Button winchButtonDown = new JoystickButton(driveController0, 1);
 
-public OI() {
-winchbutton.whenPressed(new RobotForward());
-winchbutton.whenPressed(new RobotReverse());
-}
+	public OI() {
+		winchButtonUp.whenPressed(new RobotForward());
+		winchButtonDown.whenPressed(new RobotReverse());
+	}
 }

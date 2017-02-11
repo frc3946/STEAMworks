@@ -1,8 +1,6 @@
 package org.usfirst.frc.team3946.robot.subsystems;
-
-import org.usfirst.frc.team3946.robot.Robot;
 import org.usfirst.frc.team3946.robot.RobotMap;
-
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,11 +17,11 @@ public class ClimbMotor extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void forward() {
-    	winchMotor.set(CANTalon.Value.kFoward);
-    
+    	winchMotor.set(.9);
+    	
     }
 	public void reverse() {
-		winchMotor.set(CANTalon.Value.kReverse);
+		winchMotor.set(-.5);
 	}
 }
 
