@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3946.robot.commands.AutoTravel;
+import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
+
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
@@ -26,6 +29,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
+	public static ClimbMotor climbmotor = new ClimbMotor();
+	
 	
 
 	Command autonomousCommand;
@@ -35,11 +40,11 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	@Override
+
 	public void robotInit() {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		autonomousCommand = new GearDelivery();
 	}
 
 	/**
@@ -68,18 +73,9 @@ public class Robot extends IterativeRobot {
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
-	@Override
+
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -87,8 +83,8 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during autonomous
 	 */
-	@Override
-	public void autonomousPeriodic() {
+	
+	public void AutonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 

@@ -11,6 +11,7 @@ public class RobotMap {
 	public static int fLeftDriveTalon = 2;
 	public static int bRightDriveTalon = 3;
 	public static int bLeftDriveTalon = 4;
+	public static int winchTalon = 3;
 	
 	//Encoders.. what should they be int-ed to?
 	public static int rightWheelEncoderA = 0;

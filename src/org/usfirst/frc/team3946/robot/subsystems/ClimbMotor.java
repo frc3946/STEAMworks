@@ -20,7 +20,10 @@ public class ClimbMotor extends Subsystem {
     }
     public void forward() {
     	winchMotor.set(CANTalon.Value.kFoward);
-    	
+    
     }
+	public void reverse() {
+		winchMotor.set(CANTalon.Value.kReverse);
+	}
 }
 
