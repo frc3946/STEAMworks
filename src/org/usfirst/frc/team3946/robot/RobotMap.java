@@ -15,9 +15,9 @@ public class RobotMap {
 	
 	//Encoders.. what should they be int-ed to?
 	public static int rightWheelEncoderA = 1;
-	public static int rightWheelEncoderB = 1;
-	public static int leftWheelEncoderA = 2; 
-	public static int leftWheelEncoderB = 2;
+	public static int rightWheelEncoderB = 2;
+	public static int leftWheelEncoderA = 3; 
+	public static int leftWheelEncoderB = 4;
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

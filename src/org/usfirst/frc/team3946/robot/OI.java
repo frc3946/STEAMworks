@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-
 import org.usfirst.frc.team3946.robot.commands.RobotForward;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -21,7 +20,6 @@ public class OI {
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
 
-;	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -52,7 +50,7 @@ public class OI {
 
 public OI() {
 	winchButtonUp.whenPressed(new RobotForward());
-	winchButtonDown.whenPressed(new RobotReverse());
+	//winchButtonDown.whenPressed(new RobotReverse());
 	
 	
 }

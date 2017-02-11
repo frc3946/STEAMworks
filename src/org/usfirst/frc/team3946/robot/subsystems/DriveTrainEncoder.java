@@ -22,7 +22,7 @@ public class DriveTrainEncoder extends Subsystem {
     }
         public void initEncoders(){
         	//6'11"=83 inches per 3430 ticks (unsure what this comment is)
-        	rightEncoder.setDistancePerPulse((3.14*(6.0/12.0))/360.0); // inches /ticks
+        	rightEncoder.setDistancePerPulse((3.14*(6.0/12.0))/360.0); 
         	rightEncoder.setMinRate(.1);
         	rightEncoder.setSamplesToAverage(7);
         	leftEncoder.setDistancePerPulse((3.14*(6.0/12.0))/360.0); // inches /ticks
@@ -37,7 +37,7 @@ public class DriveTrainEncoder extends Subsystem {
         
         public double getRightRate()
         {
-        	return rightEncoder.getRate();
+        	return rightEncoder.getRaw();
         	
         }
         public double getLeftDistance()
