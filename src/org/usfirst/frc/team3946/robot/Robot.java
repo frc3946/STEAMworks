@@ -54,6 +54,7 @@ public class Robot extends IterativeRobot {
 	public static double leftTicks = 0;
 	public static double rightTicks = 0;
 	
+	public static SendableChooser<String> controllerSelector;
 	public static SendableChooser<String> cameraSelector;
 	static String lastSelected = "";
 	static int currSession=0;
@@ -78,7 +79,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		CameraServer.getInstance().startAutomaticCapture();
+//		CameraServer.getInstance().startAutomaticCapture(); 
+		
+		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
+		UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
+		
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -87,10 +92,11 @@ public class Robot extends IterativeRobot {
 		cameraSelector.addDefault("Front View", "Front View");
 		cameraSelector.addObject("Back View", "Back View");
 		SmartDashboard.putData("Camera Selector", cameraSelector);		
-	
-	
 		
-	
+		controllerSelector = new SendableChooser<String>();
+		controllerSelector.addDefault("XboxController", "XboxController");
+		controllerSelector.addObject("Joystick", "Joystick");
+		SmartDashboard.putData("Controller Chooser", controllerSelector);
 	}
 
 	/**
