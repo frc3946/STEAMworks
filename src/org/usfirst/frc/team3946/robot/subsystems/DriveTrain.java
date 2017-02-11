@@ -20,8 +20,7 @@ public class DriveTrain extends Subsystem {
 	public CANTalon fLeft = new CANTalon(RobotMap.fLeftDriveTalon);
 	public CANTalon bRight = new CANTalon(RobotMap.bRightDriveTalon);
 	public CANTalon bLeft = new CANTalon(RobotMap.bLeftDriveTalon);
-	// public RobotDrive robotDrive = new RobotDrive(fLeft, bLeft, fRight,
-	// bRight);
+	public CANTalon winchMotor = new CANTalon(RobotMap.winchTalon);
 	public RobotDrive robotDrive = new RobotDrive(fLeft, fRight);
 
 	public void initDefaultCommand() {
