@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team3946.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,7 +33,8 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	public static ClimbMotor climbmotor = new ClimbMotor();
-	
+	public static SendableChooser<String> controllerSelector;
+	public static SendableChooser<String> cameraSelector;
 	
 
 	Command autonomousCommand;
@@ -46,6 +49,20 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		autonomousCommand = new GearDelivery();
+		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
+		UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
+	
+		SmartDashboard.putData("Auto mode", chooser);
+		
+		cameraSelector = new SendableChooser<String>();
+		cameraSelector.addDefault("Front View", "Front View");
+		cameraSelector.addObject("Back View", "Back View");
+		SmartDashboard.putData("Camera Selector", cameraSelector);		
+		
+		controllerSelector = new SendableChooser<String>();
+		controllerSelector.addDefault("XboxController", "XboxController");
+		controllerSelector.addObject("Joystick", "Joystick");
+		SmartDashboard.putData("Controller Chooser", controllerSelector);
 	}
 
 	/**
@@ -76,7 +93,7 @@ public class Robot extends IterativeRobot {
 	 */
 
 	public void autonomousInit() {
-		
+		autonomousCommand = chooser.getSelected();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
