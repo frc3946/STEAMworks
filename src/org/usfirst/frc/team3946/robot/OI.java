@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team3946.robot.commands.RobotForward;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 import libraries.XboxController;
@@ -19,9 +21,10 @@ public class OI {
 	
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
-	public XboxController leftController = new XboxController(0);
+	public XboxController leftController = new XboxController(3);
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
+
 
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

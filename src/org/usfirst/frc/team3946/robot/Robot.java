@@ -15,6 +15,9 @@ import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -28,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	public static ClimbMotor climbmotor = new ClimbMotor();
+
 	
 
 	Command autonomousCommand;
@@ -39,6 +43,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
+		drivetrain.fLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		drivetrain.fRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		drivetrain.fRight.configEncoderCodesPerRev(360);
+		drivetrain.fLeft.configEncoderCodesPerRev(360);
+
 		// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 	}
 
@@ -100,14 +109,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Actual Right Speed",
-				Robot.driveTrainEncoder.getRightRate());
-		SmartDashboard.putNumber("Actual Right Distance",
-				Robot.driveTrainEncoder.getRightDistance());
-		SmartDashboard.putNumber("Actual Left Speed",
-				Robot.driveTrainEncoder.getLeftRate());
-		SmartDashboard.putNumber("Actual Left Distance",
-				Robot.driveTrainEncoder.getLeftDistance());
+	//	SmartDashboard.putNumber("Actual Right Speed",
+		//		drivetrain.fRight.getSpeed());
+		SmartDashboard.putNumber("Actual Right Velocity",
+				- drivetrain.fRight.getEncVelocity());
+		SmartDashboard.putNumber("Actual Left Velocity",
+				drivetrain.fLeft.getEncVelocity());
+		//SmartDashboard.putNumber("Actual Left Distance",
+			//	drivetrain.fLeft.ge());
 
 	}
 
