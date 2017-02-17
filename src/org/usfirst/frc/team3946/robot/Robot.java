@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3946.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,6 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
@@ -43,10 +45,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
-		drivetrain.fLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		drivetrain.fRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		drivetrain.fRight.configEncoderCodesPerRev(360);
-		drivetrain.fLeft.configEncoderCodesPerRev(360);
 
 		// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 	}
@@ -56,7 +54,6 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command () if (autonomousCommand != null) autonomousCommand.start();
 	}
 
-	
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -71,8 +68,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
+	//	autonomousCommand = chooser.getSelected();
+		//if (Timer.getMatchTime() == 0) {	
+		double driveTo = Robot.driveTrainEncoder.getRightDistance();
+		
+//		if (driveTo >= 90) {
+//			Robot.drivetrain.Drive(0.0, 0.0);
+//			Robot.driveTrainEncoder.stopEncoders();		
+//			}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -83,7 +86,8 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
-	}
+		}
+	
 
 	/**
 	 * This function is called periodically during autonomous
@@ -91,6 +95,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	@Override
@@ -109,15 +114,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	//	SmartDashboard.putNumber("Actual Right Speed",
-		//		drivetrain.fRight.getSpeed());
-		SmartDashboard.putNumber("Actual Right Velocity",
-				- drivetrain.fRight.getEncVelocity());
-		SmartDashboard.putNumber("Actual Left Velocity",
-				drivetrain.fLeft.getEncVelocity());
-		//SmartDashboard.putNumber("Actual Left Distance",
-			//	drivetrain.fLeft.ge());
-
+		SmartDashboard.putNumber("Actual Right Distance",
+				Robot.driveTrainEncoder.getRightDistance());
+		SmartDashboard.putNumber("Actual Left Distance",
+				Robot.driveTrainEncoder.getLeftDistance());
 	}
 
 	/**

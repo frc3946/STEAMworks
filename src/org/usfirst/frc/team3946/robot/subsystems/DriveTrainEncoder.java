@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3946.robot.subsystems;
 
 import org.usfirst.frc.team3946.robot.RobotMap;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
@@ -15,55 +14,40 @@ import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
  */
 public class DriveTrainEncoder extends Subsystem {
 
+	double ticksCal = 19.11;
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	//Encoder rightEncoder = new Encoder(RobotMap.rightWheelEncoderA, RobotMap.rightWheelEncoderB, true, Encoder.EncodingType.k4X);
     //Encoder leftEncoder = new Encoder(RobotMap.leftWheelEncoderA, RobotMap.leftWheelEncoderB, true, Encoder.EncodingType.k4X);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     	
     }
         public void initEncoders(){
-        	
-        	//6'11"=83 inches per 3430 ticks (unsure what this comment is)
-        //	rightEncoder.setDistancePerPulse((3.14*(6.0/12.0))/360.0); 
-        	//rightEncoder.setMinRate(.1);
-        	//rightEncoder.setSamplesToAverage(7);
-        	//leftEncoder.setDistancePerPulse((3.14*(6.0/12.0))/360.0); // inches /ticks
-        	//leftEncoder.setMinRate(.1);
-        //	leftEncoder.setSamplesToAverage(7);
+    		RobotMap.fLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    		RobotMap.fRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    		RobotMap.fRight.configEncoderCodesPerRev(360);
+    		RobotMap.fLeft.configEncoderCodesPerRev(360);
         	
         }
         
-      /*  public double getRightDistance()
+        public double getRightDistance()
         {
- 
-        	return rightEncoder.get();
-        }
-        
-        public double getRightRate()
-        {
-        	return rightEncoder.getRaw();
+        	double rawData = RobotMap.fRight.getEncVelocity();
+        	return - rawData/ticksCal;
         	
         }
+        
+        	
         public double getLeftDistance()
         {
-        	return leftEncoder.getDistance();
+        	double rawLeftData = RobotMap.fLeft.getEncVelocity();
+        	return rawLeftData/ticksCal;
         }
         
-        public double getLeftRate()
+        public void stopEncoders()
         {
-        	return leftEncoder.getRate();
-        	
+        	RobotMap.fLeft.disable();
+        	RobotMap.fRight.disable();
         }
-        
-        public double getAverageDistance(){
-        	return (getLeftDistance() + getRightDistance()) / 2;
-        }
-        
-        public void resetEncoders(){
-        	leftEncoder.reset();
-        	rightEncoder.reset();
-        }*/
-    }
+}
