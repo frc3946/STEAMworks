@@ -14,7 +14,7 @@ import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
  */
 public class DriveTrainEncoder extends Subsystem {
 
-	double ticksCal = 19.11;
+	double ticksCal = 19.11; //360 divided by wheel diameter times 3.14 
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	//Encoder rightEncoder = new Encoder(RobotMap.rightWheelEncoderA, RobotMap.rightWheelEncoderB, true, Encoder.EncodingType.k4X);
@@ -24,16 +24,16 @@ public class DriveTrainEncoder extends Subsystem {
     	
     }
         public void initEncoders(){
-    		RobotMap.fLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    		RobotMap.fRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    		RobotMap.fRight.configEncoderCodesPerRev(360);
-    		RobotMap.fLeft.configEncoderCodesPerRev(360);
+    		RobotMap.bLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    		RobotMap.bRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    		RobotMap.bRight.configEncoderCodesPerRev(360);
+    		RobotMap.bLeft.configEncoderCodesPerRev(360);		
         	
         }
         
         public double getRightDistance()
         {
-        	double rawData = RobotMap.fRight.getEncVelocity();
+        	double rawData = RobotMap.bRight.getEncPosition();
         	return - rawData/ticksCal;
         	
         }
@@ -41,13 +41,14 @@ public class DriveTrainEncoder extends Subsystem {
         	
         public double getLeftDistance()
         {
-        	double rawLeftData = RobotMap.fLeft.getEncVelocity();
+        	double rawLeftData = RobotMap.fRight.getEncPosition();
         	return rawLeftData/ticksCal;
         }
         
         public void stopEncoders()
         {
-        	RobotMap.fLeft.disable();
-        	RobotMap.fRight.disable();
+    		RobotMap.bRight.setEncPosition(0);
+    		RobotMap.bLeft.setEncPosition(0);
         }
+       
 }

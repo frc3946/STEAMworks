@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3946.robot.commands.EncoderReset;
 import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
@@ -33,7 +34,6 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	public static ClimbMotor climbmotor = new ClimbMotor();
-
 	
 
 	Command autonomousCommand;
@@ -45,16 +45,21 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
-
-		// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
+	// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
+		//autonomousCommand = new ();
 	}
 
 	
 	public void autonmousInit() {
-		// schedule the autonomous command () if (autonomousCommand != null) autonomousCommand.start();
+		// schedule the autonomous command () 
+		if (autonomousCommand != null) autonomousCommand.start();
 	}
 
-
+/**
+ * This function is called periodically during autonomous
+ */
+	public void autonomousPeriodic1() {
+		Scheduler.getInstance().run();	}
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -69,12 +74,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 	//	autonomousCommand = chooser.getSelected();
-		//if (Timer.getMatchTime() == 0) {	
-		double driveTo = Robot.driveTrainEncoder.getRightDistance();
+		if (Timer.getMatchTime() == 15) {	
+	//	double driveTo = Robot.driveTrainEncoder.getRightDistance();
 		
-//		if (driveTo >= 90) {
-//			Robot.drivetrain.Drive(0.0, 0.0);
-//			Robot.driveTrainEncoder.stopEncoders();		
+//		 (driveTo >= 90) {
+	//		Robot.drivetrain.Drive(0.0, 0.0);
+	//		Robot.driveTrainEncoder.stopEncoders();		
 //			}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -86,7 +91,7 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
-		}
+		}}
 	
 
 	/**
