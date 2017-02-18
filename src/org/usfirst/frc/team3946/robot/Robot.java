@@ -10,13 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team3946.robot.commands.GearDelivery;
-//import org.usfirst.frc.team3946.robot.commands.AutoTravel;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
-
-//import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
-//import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 
@@ -35,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static SendableChooser<String> controllerSelector;
 	public static SendableChooser<String> cameraSelector;
+
 	
 
 	Command autonomousCommand;
@@ -44,7 +40,6 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-
 	public void robotInit() {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -72,14 +67,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 
 	}
 
-	@Override
-	public void disabledPeriodic() {
+	
+	public void autonmousInit() {
+		if (autonomousCommand != null) autonomousCommand.start();
+	}
+
+	
+
+
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -122,12 +124,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Actual Right Speed",
-				Robot.driveTrainEncoder.getRightRate());
 		SmartDashboard.putNumber("Actual Right Distance",
 				Robot.driveTrainEncoder.getRightDistance());
-		SmartDashboard.putNumber("Actual Left Speed",
-				Robot.driveTrainEncoder.getLeftRate());
 		SmartDashboard.putNumber("Actual Left Distance",
 				Robot.driveTrainEncoder.getLeftDistance());
 

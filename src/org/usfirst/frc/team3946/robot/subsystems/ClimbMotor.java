@@ -18,10 +18,14 @@ public class ClimbMotor extends Subsystem {
     }
     public void forward() {
     	winchMotor.set(.9);
-    	
+    
     }
 	public void reverse() {
 		winchMotor.set(-.5);
+		
 	}
 }
+   
+    	
+	
 

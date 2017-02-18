@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3946.robot;
+import com.ctre.CANTalon;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -7,17 +8,19 @@ package org.usfirst.frc.team3946.robot;
  * floating around.
  */
 public class RobotMap {
-	public static int fRightDriveTalon = 1;
-	public static int fLeftDriveTalon = 2;
-//	public static int bRightDriveTalon = 3;
-//	public static int bLeftDriveTalon = 4;
-	public static int winchTalon = 3;
+	public static CANTalon fRight = new CANTalon(1);
+	public static CANTalon fLeft = new CANTalon(2);
+	public static CANTalon bRight = new CANTalon(3);
+	public static CANTalon bLeft = new CANTalon(4);
+	//public static CANTalon winchMotor = new CANTalon(0);
+	//public static int fRightDriveTalon = 1;
+	//public static int fLeftDriveTalon = 2;
+//	//public static int bRightDriveTalon = 3;
+	//public static int bLeftDriveTalon = 4;
+	public static int winchTalon = 0;
+//	
+
 	
-	//Encoders.. what should they be int-ed to?
-	public static int rightWheelEncoderA = 0;
-	public static int rightWheelEncoderB = 1;
-	public static int leftWheelEncoderA = 2; 
-	public static int leftWheelEncoderB = 3;
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
