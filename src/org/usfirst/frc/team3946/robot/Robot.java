@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		autonomousCommand = new GearDelivery();
+//		autonomousCommand = new GearDelivery();
 		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
 		UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
 	
@@ -74,17 +74,7 @@ public class Robot extends IterativeRobot {
 
 	}
 
-	
-	public void autonmousInit() {
-		if (autonomousCommand != null) autonomousCommand.start();
-	}
 
-	
-
-
-	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
-	}
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -99,7 +89,7 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 //		autonomousCommand = chooser.getSelected();
-		autonomousCommand = new Drive(0.7, 0.7);
+		Robot.drivetrain.Drive(-0.7, -0.7);
 		Timer.delay(1.0);
 		if (autonomousCommand != null) 
 			autonomousCommand.start();

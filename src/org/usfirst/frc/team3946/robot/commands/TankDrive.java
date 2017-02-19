@@ -29,6 +29,7 @@ public class TankDrive extends Command {
     	double rightStick = Robot.oi.leftController.getLeftStickY();
     	double leftStick = Robot.oi.leftController.getRightStickY();
     	Robot.drivetrain.Drive(leftTrain, rightTrain);
+    	Robot.drivetrain.Drive(leftStick, rightStick);
     	
     }
 
