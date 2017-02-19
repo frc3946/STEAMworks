@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import libraries.XboxController;
 
+import org.usfirst.frc.team3946.robot.commands.RobotReverse;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -24,7 +25,6 @@ public class OI {
 	public XboxController leftController = new XboxController(3);
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
-	
 
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
@@ -56,9 +56,10 @@ public class OI {
 
 public OI() {
 	winchButtonUp.whenPressed(new RobotForward());
-	//winchButtonDown.whenPressed(new RobotReverse());
+	winchButtonDown.whenPressed(new RobotReverse());
 	RobotMap.bLeft.setPosition(0);
 	RobotMap.bRight.setPosition(0);
+	//swoosh green port 7 DIO other on DIO 6
 	
 	
 }

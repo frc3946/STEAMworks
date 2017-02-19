@@ -11,13 +11,8 @@ import com.ctre.CANTalon;
 public class RobotMap {
 	public static CANTalon fRight = new CANTalon(1);
 	public static CANTalon fLeft = new CANTalon(2);
-	public static CANTalon bRight = new CANTalon(3);
-	public static CANTalon bLeft = new CANTalon(4);
-	//public static CANTalon winchMotor = new CANTalon(0);
-//	public static int fRightDriveTalon = 1;
-//	public static int fLeftDriveTalon = 2;
-//	public static int bRightDriveTalon = 3;
-//	public static int bLeftDriveTalon = 4;
+	public static CANTalon bRight = new CANTalon(3);//works right
+	public static CANTalon bLeft = new CANTalon(4); //works, left
 	public static int winchTalon = 0;
 //	
 

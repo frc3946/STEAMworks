@@ -18,8 +18,6 @@ public class TankDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 
-    	
-  
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,8 +26,8 @@ public class TankDrive extends Command {
     	double rightTrain = Robot.oi.driveController1.getY();
     	double rightStick = Robot.oi.leftController.getLeftStickY();
     	double leftStick = Robot.oi.leftController.getRightStickY();
-    	Robot.drivetrain.Drive(leftTrain, rightTrain);
-    	Robot.drivetrain.Drive(leftStick, rightStick);
+    	Robot.drivetrain.Drive(-leftTrain, rightTrain);
+    	//Robot.drivetrain.Drive(leftStick, rightStick); //COMMENT OUT IF NOT USING JOYSTICKS. YOU MUST COMMENT TO USE JOYSTICKS
     }
 
     // Make this return true when this Command no longer needs to run execute()
