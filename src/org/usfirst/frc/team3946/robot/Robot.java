@@ -4,12 +4,15 @@ package org.usfirst.frc.team3946.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team3946.robot.commands.Drive;
 import org.usfirst.frc.team3946.robot.commands.GearDelivery;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
@@ -30,10 +33,10 @@ public class Robot extends IterativeRobot {
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static SendableChooser<String> controllerSelector;
 	public static SendableChooser<String> cameraSelector;
-
 	
-
+	//autonomous code?
 	Command autonomousCommand;
+
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -95,8 +98,10 @@ public class Robot extends IterativeRobot {
 	 */
 
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-		if (autonomousCommand != null)
+//		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new Drive(0.7, 0.7);
+		Timer.delay(1.0);
+		if (autonomousCommand != null) 
 			autonomousCommand.start();
 	}
 
