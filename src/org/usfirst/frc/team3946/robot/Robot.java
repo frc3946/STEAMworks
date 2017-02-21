@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team3946.robot.commands.Drive;
 import org.usfirst.frc.team3946.robot.commands.GearDelivery;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
+
+import com.ctre.CANTalon.FeedbackDevice;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -89,8 +89,18 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 //		autonomousCommand = chooser.getSelected();
-		Robot.drivetrain.Drive(-0.7, -0.7);
-		Timer.delay(1.0);
+//    	RobotMap.fRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//    	RobotMap.fRight.getEncPosition();
+//		RobotMap.fRight.configEncoderCodesPerRev(360);
+	
+		Robot.drivetrain.Drive(-0.4, -0.4);
+		if (Robot.driveTrainEncoder.getRightDistance() >= 67) {
+			Robot.drivetrain.Drive(0.0, 0.0);
+			Timer.delay(3.0);
+			Robot.drivetrain.Drive(0.4, 0.4);
+			if (Robot.driveTrainEncoder.getRightDistance() >= 30);
+			Robot.drivetrain.Drive(0.0, 0.0);
+		} 
 		if (autonomousCommand != null) 
 			autonomousCommand.start();
 	}
@@ -101,6 +111,12 @@ public class Robot extends IterativeRobot {
 	
 	public void AutonomousPeriodic() {
 		Scheduler.getInstance().run();
+		RobotMap.fRight.setPosition(0);
+		Robot.driveTrainEncoder.getRightDistance();
+		SmartDashboard.putNumber("Actual Right Distance",
+			Robot.driveTrainEncoder.getRightDistance());
+
+		
 	}
 
 	@Override

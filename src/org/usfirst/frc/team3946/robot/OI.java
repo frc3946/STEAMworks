@@ -15,9 +15,10 @@ public class OI {
 
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
-	public XboxController leftController = new XboxController(3);
+    public XboxController leftController = new XboxController(3);
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
+	
 	
 
 
@@ -52,6 +53,8 @@ public class OI {
 public OI() {
 	winchButtonUp.whenPressed(new RobotForward());
 	winchButtonDown.whenPressed(new RobotReverse());
+	RobotMap.fLeft.setPosition(0);
+	RobotMap.fRight.setPosition(0);
 	
 	
 }
