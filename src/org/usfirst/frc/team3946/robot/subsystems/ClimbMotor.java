@@ -27,7 +27,10 @@ public class ClimbMotor extends Subsystem {
     	
     }
     public void reverse() {
-	winchMotor.set(-.5);
+	winchMotor.set(-0.1);
+    }
+    public void stop() {
+    	winchMotor.set(0.0);
     }
 }
 

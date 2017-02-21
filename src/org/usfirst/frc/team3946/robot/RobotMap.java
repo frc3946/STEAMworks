@@ -2,6 +2,8 @@ package org.usfirst.frc.team3946.robot;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking

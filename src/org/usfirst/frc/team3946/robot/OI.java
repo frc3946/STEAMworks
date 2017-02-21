@@ -61,6 +61,5 @@ public OI() {
 	RobotMap.bRight.setPosition(0);
 	//swoosh green port 7 DIO other on DIO 6
 	
-	
 }
 }

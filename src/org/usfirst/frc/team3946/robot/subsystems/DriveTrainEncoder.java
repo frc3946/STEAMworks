@@ -27,7 +27,8 @@ public class DriveTrainEncoder extends Subsystem {
     		RobotMap.bLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     		RobotMap.bRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     		RobotMap.bRight.configEncoderCodesPerRev(360);
-    		RobotMap.bLeft.configEncoderCodesPerRev(360);		
+    		RobotMap.bLeft.configEncoderCodesPerRev(360);	
+
         	
         }
         
