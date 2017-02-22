@@ -28,6 +28,7 @@ public class DriveTrainEncoder extends Subsystem {
     		RobotMap.bRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     		RobotMap.bRight.configEncoderCodesPerRev(360);
     		RobotMap.bLeft.configEncoderCodesPerRev(360);	
+    		//black blue orange yellow
 
         	
         }
