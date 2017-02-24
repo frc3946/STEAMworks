@@ -6,6 +6,7 @@ import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -38,11 +39,12 @@ public class DriveTrain extends Subsystem {
 		LiveWindow.addActuator("Drive Motors", "bLeft", RobotMap.bLeft);
 	}
 
-	public void Drive(double speedLeft, double speedRight) {
+	public Command Drive(double speedLeft, double speedRight) {
 		RobotMap.fRight.set(speedRight);
 		RobotMap.fLeft.set(speedLeft);
 		RobotMap.bRight.set(speedRight);
 		RobotMap.bLeft.set(speedLeft);
+		return null;
 	}
 
 	public void ReverseDrive() {

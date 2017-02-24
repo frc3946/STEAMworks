@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static SendableChooser<String> controllerSelector;
 	public static SendableChooser<String> cameraSelector;
+	double distance;
 	
 	//autonomous code?
 	Command autonomousCommand;
@@ -70,6 +71,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		RobotMap.fLeft.setPosition(0);
+		RobotMap.fRight.setPosition(0);
+
+	
 		// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 
 	}
@@ -92,27 +97,34 @@ public class Robot extends IterativeRobot {
 //    	RobotMap.fRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 //    	RobotMap.fRight.getEncPosition();
 //		RobotMap.fRight.configEncoderCodesPerRev(360);
-	
-		Robot.drivetrain.Drive(-0.4, -0.4);
-		if (Robot.driveTrainEncoder.getRightDistance() >= 67) {
-			Robot.drivetrain.Drive(0.0, 0.0);
-			Timer.delay(3.0);
-			Robot.drivetrain.Drive(0.4, 0.4);
-			if (Robot.driveTrainEncoder.getRightDistance() >= 30);
-			Robot.drivetrain.Drive(0.0, 0.0);
-		} 
+
+//		SmartDashboard.putNumber("Actual Right Distance",
+//			Robot.driveTrainEncoder.getRightDistance());
+		autonomousCommand = Robot.drivetrain.Drive(-0.2, -0.2);
+		
 		if (autonomousCommand != null) 
 			autonomousCommand.start();
 	}
+
+
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
 	
 	public void AutonomousPeriodic() {
+		 distance = Robot.driveTrainEncoder.getRightDistance();
+		 if (distance >= 120) {
+				Robot.drivetrain.Drive(0.0, 0.0);
+				Timer.delay(3.0);
+				Robot.drivetrain.Drive(0.1, 0.1);
+					if (distance <= 0) {
+					Robot.drivetrain.Drive(0.0, 0.0);
+			} 
+		}
+		//double distance = Robot.driveTrainEncoder.getRightDistance();
 		Scheduler.getInstance().run();
-		RobotMap.fRight.setPosition(0);
-		Robot.driveTrainEncoder.getRightDistance();
+		//RobotMap.fRight.setPosition(0);
 		SmartDashboard.putNumber("Actual Right Distance",
 			Robot.driveTrainEncoder.getRightDistance());
 

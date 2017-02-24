@@ -53,8 +53,7 @@ public class OI {
 public OI() {
 	winchButtonUp.whenPressed(new RobotForward());
 	winchButtonDown.whenPressed(new RobotReverse());
-	RobotMap.fLeft.setPosition(0);
-	RobotMap.fRight.setPosition(0);
+
 	
 	
 }
