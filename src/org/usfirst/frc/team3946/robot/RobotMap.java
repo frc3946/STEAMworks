@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3946.robot;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 
@@ -16,6 +17,7 @@ public class RobotMap {
 	public static CANTalon bRight = new CANTalon(3);//works right
 	public static CANTalon bLeft = new CANTalon(4); //works, left
 	public static int winchTalon = 0;
+	 
 //	
 
 	// If you are using multiple modules, make sure to define both the port

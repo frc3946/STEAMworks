@@ -17,6 +17,7 @@ import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 import org.usfirst.frc.team3946.robot.subsystems.LimitSwitch;
+import org.usfirst.frc.team3946.robot.subsystems.SwooshEncoders;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static LimitSwitch limitswitch = new LimitSwitch();
+	public static SwooshEncoders swooshencoders = new SwooshEncoders();
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
