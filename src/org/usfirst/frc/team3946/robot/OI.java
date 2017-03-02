@@ -9,6 +9,7 @@ import org.usfirst.frc.team3946.robot.commands.RobotForward;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
 import libraries.XboxController;
@@ -20,7 +21,6 @@ import org.usfirst.frc.team3946.robot.commands.SwooshExtend;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
 	public XboxController leftController = new XboxController(3);

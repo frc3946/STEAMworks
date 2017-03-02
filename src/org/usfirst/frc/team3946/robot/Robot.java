@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team3946.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,7 +38,6 @@ public class Robot extends IterativeRobot {
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static LimitSwitch limitswitch = new LimitSwitch();
 	public static SwooshEncoders swooshencoders = new SwooshEncoders();
-
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -120,11 +120,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Actual Right Distance",
 				Robot.driveTrainEncoder.getRightDistance());
 		SmartDashboard.putNumber("Actual Left Distance",
 				Robot.driveTrainEncoder.getLeftDistance());
+	SmartDashboard.putNumber("Encoder Winch",
+				Robot.swooshencoders.getAngle());
 	}
 
 	/**
