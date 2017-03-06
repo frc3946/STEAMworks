@@ -4,9 +4,9 @@ import org.usfirst.frc.team3946.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RobotReverse extends Command {
+public class WinchPickup extends Command {
 
-	public RobotReverse(){
+	public WinchPickup(){
 		requires(Robot.climbmotor);
 	}
 	

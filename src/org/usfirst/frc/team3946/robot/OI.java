@@ -2,8 +2,8 @@ package org.usfirst.frc.team3946.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team3946.robot.commands.RobotForward;
-import org.usfirst.frc.team3946.robot.commands.RobotReverse;
+import org.usfirst.frc.team3946.robot.commands.RobotClimb;
+import org.usfirst.frc.team3946.robot.commands.WinchPickup;
 import edu.wpi.first.wpilibj.Joystick;
 import libraries.XboxController;
 
@@ -51,8 +51,8 @@ public class OI {
 
 
 public OI() {
-	winchButtonUp.whenPressed(new RobotForward());
-	winchButtonDown.whenPressed(new RobotReverse());
+	winchButtonUp.whenPressed(new RobotClimb());
+	winchButtonDown.whenPressed(new WinchPickup());
 
 	
 	
