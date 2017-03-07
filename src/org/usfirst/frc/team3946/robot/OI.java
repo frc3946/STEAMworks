@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3946.robot.commands.RobotForward;
+import org.usfirst.frc.team3946.robot.commands.RobotClimb;
 
 import com.ctre.CANTalon;
 
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import libraries.XboxController;
 
-import org.usfirst.frc.team3946.robot.commands.RobotReverse;
+import org.usfirst.frc.team3946.robot.commands.WinchStop;
 import org.usfirst.frc.team3946.robot.commands.SwooshExtend;
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -56,8 +56,8 @@ public class OI {
 
 
 public OI() {
-	winchButtonUp.whenPressed(new RobotForward());
-	winchButtonDown.whenPressed(new RobotReverse());
+	winchButtonUp.whenPressed(new RobotClimb());
+	winchButtonDown.whenPressed(new WinchStop());
 	RobotMap.bLeft.setPosition(0);
 	RobotMap.bRight.setPosition(0);
 	gearPusher.whenPressed(new SwooshExtend());

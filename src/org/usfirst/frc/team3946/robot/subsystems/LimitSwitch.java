@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3946.robot.subsystems;
 
-import org.usfirst.frc.team3946.robot.commands.RobotReverse;
+import org.usfirst.frc.team3946.robot.commands.WinchStop;
 
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -29,7 +29,7 @@ public class LimitSwitch extends Subsystem {
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new RobotReverse());
+        setDefaultCommand(new WinchStop());
     }
 }
 
