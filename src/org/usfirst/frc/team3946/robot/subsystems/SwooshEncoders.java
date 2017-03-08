@@ -11,7 +11,7 @@ public class SwooshEncoders extends Subsystem {
 	double angle;
 	int PulsePerRevolution = 440;
 	Talon swooshTalon = new Talon(1);
-	Encoder swooshEncoder = new Encoder(6, 7);//, Encoder.EncodingType.k4X);
+	public Encoder swooshEncoder = new Encoder(6, 7);//, Encoder.EncodingType.k4X);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	 

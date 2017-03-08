@@ -17,9 +17,9 @@ public class ClimbMotor extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	 DigitalInput lightOne = new DigitalInput(3);
-	 DigitalInput lightTwo = new DigitalInput(4);
-	 DigitalInput lightThree = new DigitalInput(5);
+	DigitalInput lightOne = new DigitalInput(3);
+	DigitalInput lightTwo = new DigitalInput(4);
+	DigitalInput lightThree = new DigitalInput(5);
 	public Talon winchMotor = new Talon(RobotMap.winchTalon);
 
     public void initDefaultCommand() {
@@ -36,17 +36,5 @@ public class ClimbMotor extends Subsystem {
     public void stop() {
     	winchMotor.set(0.0);
     }
-    public void getInfo() {
-    	 int tester;
-       	boolean test1 = lightOne.get();
-      	boolean test2 = lightTwo.get();
-      	boolean test3 = lightThree.get();
-       	if (test1 == true || test2 == true || test3 == true) {
-    			tester = 1; 
-        	}
-       	else {
-       		tester = 0;
-       	}
-
 }
 
