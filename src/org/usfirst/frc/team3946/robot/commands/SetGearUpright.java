@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3946.robot.commands;
 
 import org.usfirst.frc.team3946.robot.Robot;
+import org.usfirst.frc.team3946.robot.RobotMap;
 import org.usfirst.frc.team3946.robot.subsystems.SwooshEncoders;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -11,9 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SetGearUpright extends Command {
 	
-	 DigitalInput lightOne = new DigitalInput(3);
-	 DigitalInput lightTwo = new DigitalInput(4);
-	 DigitalInput lightThree = new DigitalInput(5);
+	
 
     public SetGearUpright() {
         // Use requires() here to declare subsystem dependencies
@@ -27,9 +26,9 @@ public class SetGearUpright extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean test1 = lightOne.get();
-      	boolean test2 = lightTwo.get();
-      	boolean test3 = lightThree.get();
+    	boolean test1 = RobotMap.lightOne.get();
+      	boolean test2 = RobotMap.lightTwo.get();
+      	boolean test3 = RobotMap.lightThree.get();
        	if (test1 == true || test2 == true || test3 == true) {
     			Robot.swooshencoders.angle90();
         	}

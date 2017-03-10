@@ -23,7 +23,7 @@ import org.usfirst.frc.team3946.robot.commands.SetGearUpright;
 public class OI {
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
-	public XboxController leftController = new XboxController(3);
+	//public XboxController leftController = new XboxController(3);
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
 	Button gearPusher = new JoystickButton(driveController1, 3);
@@ -60,7 +60,7 @@ public OI() {
 	winchButtonDown.whenPressed(new WinchStop());
 	RobotMap.bLeft.setPosition(0);
 	RobotMap.bRight.setPosition(0);
-	gearPusher.whenPressed(new SetGearUpright());
+	//gearPusher.whenPressed(new SetGearUpright());
 	//swoosh green port 7 DIO other on DIO 6
 	Robot.swooshencoders.swooshEncoder.reset();
 	

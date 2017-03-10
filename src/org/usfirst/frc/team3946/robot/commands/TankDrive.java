@@ -24,8 +24,8 @@ public class TankDrive extends Command {
     protected void execute() {
     	double leftTrain = Robot.oi.driveController0.getY();
     	double rightTrain = Robot.oi.driveController1.getY();
-    	double rightStick = Robot.oi.leftController.getLeftStickY();
-    	double leftStick = Robot.oi.leftController.getRightStickY();
+    	//double rightStick = Robot.oi.leftController.getLeftStickY();
+    	//double leftStick = Robot.oi.leftController.getRightStickY();
     	Robot.drivetrain.Drive(leftTrain, rightTrain);
     	//Robot.drivetrain.Drive(leftStick, rightStick); //COMMENT OUT IF NOT USING JOYSTICKS. YOU MUST COMMENT TO USE JOYSTICKS
     }

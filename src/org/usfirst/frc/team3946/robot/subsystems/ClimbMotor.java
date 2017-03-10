@@ -17,9 +17,9 @@ public class ClimbMotor extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	DigitalInput lightOne = new DigitalInput(3);
-	DigitalInput lightTwo = new DigitalInput(4);
-	DigitalInput lightThree = new DigitalInput(5);
+	//DigitalInput lightOne = new DigitalInput(3);
+	//DigitalInput lightTwo = new DigitalInput(4);
+	//DigitalInput lightThree = new DigitalInput(5);
 	public Talon winchMotor = new Talon(RobotMap.winchTalon);
 
     public void initDefaultCommand() {

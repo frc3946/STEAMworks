@@ -29,7 +29,7 @@ public class LimitSwitch extends Subsystem {
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new WinchStop());
+       // setDefaultCommand(new WinchStop());
     }
 }
 

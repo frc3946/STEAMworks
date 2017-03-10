@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3946.robot.commands;
 
 import org.usfirst.frc.team3946.robot.Robot;
+import org.usfirst.frc.team3946.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -11,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RobotClimb extends Command {
 
-	AnalogInput fingerTip = new AnalogInput(0);
     public RobotClimb() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.climbmotor);
@@ -24,12 +24,17 @@ public class RobotClimb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double value = RobotMap.fingerTips.getValue();
+    	if (value >= 2500) {
+    		Robot.climbmotor.stop();
+    	}
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return true; 	
+    	
+    	return false; 	
  
     }
 

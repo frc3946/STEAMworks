@@ -128,6 +128,7 @@ public class Robot extends IterativeRobot {
 				Robot.driveTrainEncoder.getLeftDistance());
 	SmartDashboard.putNumber("Encoder Winch",
 				Robot.swooshencoders.getAngle());
+	SmartDashboard.putNumber("FingerTips", RobotMap.fingerTips.getValue());
 	}
 
 	/**
