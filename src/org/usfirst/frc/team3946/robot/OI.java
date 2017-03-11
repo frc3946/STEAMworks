@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import libraries.XboxController;
 
 import org.usfirst.frc.team3946.robot.commands.WinchStop;
-import org.usfirst.frc.team3946.robot.commands.SetGearUpright;
+import org.usfirst.frc.team3946.robot.commands.GearExtend;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -60,9 +60,9 @@ public OI() {
 	winchButtonDown.whenPressed(new WinchStop());
 	RobotMap.bLeft.setPosition(0);
 	RobotMap.bRight.setPosition(0);
-	//gearPusher.whenPressed(new SetGearUpright());
-	//swoosh green port 7 DIO other on DIO 6
+	gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();
-	
+	Robot.swooshencoders.checkForGear();
+	Robot.swooshencoders.angle45();
 }
 }

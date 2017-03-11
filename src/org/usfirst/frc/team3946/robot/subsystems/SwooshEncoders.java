@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3946.robot.subsystems;
 
+import org.usfirst.frc.team3946.robot.Robot;
+import org.usfirst.frc.team3946.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,12 +22,15 @@ public class SwooshEncoders extends Subsystem {
   	swooshEncoder.setDistancePerPulse(7);
     	//convert to degrees
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new normalizeencoder());
   	
     }
     public double getAngle() {
     	double distance = swooshEncoder.getDistance();
-    	double angle = distance*PulsePerRevolution/360;
+    	//360 as in degrees. the other factor is the manually calculated one by physically turning the encoder to a 90 degree
+    	//position, finding out how many ticks that would be. (technically the 360 does not need to be there, but it is
+    	//and already in the calculations for the scale factor)
+    	double rawTicks = distance*PulsePerRevolution/360;
+    	double angle = rawTicks*-.1155;
     	return angle;
   	}
     public void angle0() {
@@ -72,5 +78,15 @@ public class SwooshEncoders extends Subsystem {
     		swooshTalon.set(0);
     	}
     }
+    public void checkForGear() {
+    	boolean test1 = RobotMap.lightOne.get();
+      	boolean test2 = RobotMap.lightTwo.get();
+      	boolean test3 = RobotMap.lightThree.get();
+       	if (test1 == true || test2 == true || test3 == true) {
+    			Robot.swooshencoders.angle90();
+       	}
+    	
+    }
 }
+
 
