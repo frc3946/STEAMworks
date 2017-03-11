@@ -3,16 +3,40 @@ package org.usfirst.frc.team3946.robot;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Timer;
+=======
+import edu.wpi.first.wpilibj.Preferences;
+>>>>>>> 709a92ec76f3e24fb2f899a5633c92a7c8e009e5
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+<<<<<<< HEAD
 import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
+=======
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.vision.VisionRunner;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+ 
+>>>>>>> 709a92ec76f3e24fb2f899a5633c92a7c8e009e5
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
@@ -34,10 +58,44 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
+<<<<<<< HEAD
 	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static LimitSwitch limitswitch = new LimitSwitch();
 	public static SwooshEncoders swooshencoders = new SwooshEncoders();
+=======
+	
+	// preferences
+	public static Preferences prefs;
+	public static Accelerometer accel = new BuiltInAccelerometer();
+	public static double distanceTarget = 130;
+	public static double distanceOffset = 0;
+	public static double angleMultiplier = 1;
+	public static double angleAddition = 0;
+	public static double distanceMultiplier = 1;
+	public static double distanceAddition = 0;
+	public static double leftInches = 0;
+	public static double rightInches = 0;
+	public static double leftTicks = 0;
+	public static double rightTicks = 0;
+
+	public static SendableChooser<String> controllerSelector;
+	public static SendableChooser<String> cameraSelector;
+	static String lastSelected = "";
+	static int currSession=0;
+	static int sessionfront=0;
+	static int sessionback=0; 
+	
+//	private static final int IMG_WIDTH = 320;
+//	private static final int IMG_HEIGHT = 240;
+	
+//	private VisionThread visionThread;
+//	private double centerX = 0.0;
+//	private RobotDrive drive;
+//	
+//	private final Object imgLock = new Object();
+
+>>>>>>> 709a92ec76f3e24fb2f899a5633c92a7c8e009e5
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -46,9 +104,51 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+//		CameraServer.getInstance().startAutomaticCapture(); 
+		
+		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
+		UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
+		cam0.setFPS(30);
+		cam0.setResolution(200, 200);
+		cam1.setFPS(30);
+		cam1.setResolution(200, 200);
+		
 		oi = new OI();
+<<<<<<< HEAD
 	// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 		//autonomousCommand = new ();
+=======
+		// chooser.addObject("My Auto", new MyAutoCommand());
+		
+		cameraSelector = new SendableChooser<String>();
+		cameraSelector.addDefault("Front View", "Front View");
+		cameraSelector.addObject("Back View", "Back View");
+				
+		controllerSelector = new SendableChooser<String>();
+		controllerSelector.addDefault("Joystick", "Joystick");
+		controllerSelector.addObject("XboxController", "XboxController");
+			
+//		distanceTarget = prefs.getDouble("DistanceTarget", distanceTarget);
+//	 	distanceOffset = prefs.getDouble("DistanceOffset", distanceOffset);
+	 	
+	 	SmartDashboard.putData("Camera Selector", cameraSelector);
+	 	SmartDashboard.putData("Controller Chooser", controllerSelector);
+	 	SmartDashboard.putData("Auto mode", chooser);
+	 	SmartDashboard.putNumber("Angle",
+				(Math.atan2(Robot.accel.getY(), Robot.accel.getZ()))
+						* (180 / Math.PI));
+	
+	}
+
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+	 */
+	@Override
+	public void disabledInit() {
+
+>>>>>>> 709a92ec76f3e24fb2f899a5633c92a7c8e009e5
 	}
 
 	
@@ -101,7 +201,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+<<<<<<< HEAD
 		Scheduler.getInstance().run();
+=======
+	
+>>>>>>> 709a92ec76f3e24fb2f899a5633c92a7c8e009e5
 		
 	}
 
@@ -139,3 +243,4 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 }
+ 

@@ -11,6 +11,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 import libraries.XboxController;
 
@@ -23,10 +24,14 @@ import org.usfirst.frc.team3946.robot.commands.SetGearUpright;
 public class OI {
 	public Joystick driveController0 = new Joystick(0);
 	public Joystick driveController1 = new Joystick(1);
+<<<<<<< HEAD
 	//public XboxController leftController = new XboxController(3);
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
 	Button gearPusher = new JoystickButton(driveController1, 3);
+=======
+	
+>>>>>>> 709a92ec76f3e24fb2f899a5633c92a7c8e009e5
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
