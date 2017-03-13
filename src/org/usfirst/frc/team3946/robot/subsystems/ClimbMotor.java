@@ -26,13 +26,15 @@ public class ClimbMotor extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
     public void forward() {
     	winchMotor.set(1.0);
-    	
-    }
+    	}
+    
     public void reverse() {
-	winchMotor.set(-0.5);
+    	winchMotor.set(-0.5);
     }
+    
     public void stop() {
     	winchMotor.set(0.0);
     }

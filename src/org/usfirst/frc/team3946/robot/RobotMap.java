@@ -19,6 +19,7 @@ public class RobotMap {
 	public static CANTalon bRight = new CANTalon(3);//works right
 	public static CANTalon bLeft = new CANTalon(4); //works, left
 	public static int winchTalon = 0;
+	public static int swooshTalon = 1;
 	public static AnalogInput fingerTips = new AnalogInput(1);
 	public static DigitalInput lightOne = new DigitalInput(3);
 	public static DigitalInput lightTwo = new DigitalInput(4);

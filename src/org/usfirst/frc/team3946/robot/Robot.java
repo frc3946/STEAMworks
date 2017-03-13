@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 
 import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
@@ -40,6 +42,8 @@ public class Robot extends IterativeRobot {
 	public static SwooshEncoders swooshencoders = new SwooshEncoders();
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	
+	UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 
 	/**
 	 * This function is run when the robot is first started up and should be

@@ -36,7 +36,8 @@ public class SwooshEncoders extends Subsystem {
     public void angle0() {
     	angle = getAngle();
     	if (angle > 0) {
-    		swooshTalon.set(-.1); 
+    		swooshTalon.set(-.5);
+    	
     	}
     	else {
     		swooshTalon.set(0);
@@ -45,10 +46,18 @@ public class SwooshEncoders extends Subsystem {
     public void angle45() {
     	angle = getAngle();
     	if (angle > 45) {
-    		swooshTalon.set(-.1); 
+    		swooshTalon.set(-.4); 
+    		angle = getAngle();
+    		if (angle == 45) {
+    			swooshTalon.set(0);
+    		}
     	}
     	else if (angle < 45) {
-    		swooshTalon.set(.1);
+    		swooshTalon.set(.4);
+    		angle = getAngle();
+    		if (angle == 45) {
+    			swooshTalon.set(0);
+    		}
     	}
     	else {
     		swooshTalon.set(0);
@@ -57,10 +66,10 @@ public class SwooshEncoders extends Subsystem {
     public void angle90() {
     	angle = getAngle();
     	if (angle > 90) {
-    		swooshTalon.set(-.1); 
+    		swooshTalon.set(-1.0); 
     	}
     	else if (angle < 90) {
-    		swooshTalon.set(.1);
+    		swooshTalon.set(1.0);
     	}
     	else {
     		swooshTalon.set(0);
@@ -68,23 +77,26 @@ public class SwooshEncoders extends Subsystem {
     }
     public void angle180() {
     	angle = getAngle();
-    	if (angle > 180) {
-    		swooshTalon.set(-.1); 
+    	//while (angle > 180) {
+    		//swooshTalon.set(-1.0); 
+    //	}
+    	while (angle < 180) {
+    		swooshTalon.set(0.5);
+    		if (angle >= 180) {
+    			swooshTalon.set(0);
+    		}
     	}
-    	else if (angle < 180) {
-    		swooshTalon.set(.1);
-    	}
-    	else {
-    		swooshTalon.set(0);
-    	}
+    	//else {
+    	
+    //	}
     }
     public void checkForGear() {
     	boolean test1 = RobotMap.lightOne.get();
       	boolean test2 = RobotMap.lightTwo.get();
       	boolean test3 = RobotMap.lightThree.get();
-       	if (test1 == true || test2 == true || test3 == true) {
-    			Robot.swooshencoders.angle90();
-       	}
+       	//if (test1 == true || test2 == true || test3 == true) {
+    			//Robot.swooshencoders.angle90();
+       	//}
     	
     }
 }

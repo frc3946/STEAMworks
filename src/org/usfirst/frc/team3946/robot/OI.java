@@ -27,6 +27,7 @@ public class OI {
 	Button winchButtonUp = new JoystickButton(driveController1, 1);
 	Button winchButtonDown = new JoystickButton(driveController0, 1);
 	Button gearPusher = new JoystickButton(driveController1, 3);
+	Button sendToZero = new JoystickButton(driveController1, 4);
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -60,9 +61,10 @@ public OI() {
 	winchButtonDown.whenPressed(new WinchStop());
 	RobotMap.bLeft.setPosition(0);
 	RobotMap.bRight.setPosition(0);
-	gearPusher.whenPressed(new GearExtend());
+	//gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();
-	Robot.swooshencoders.checkForGear();
-	Robot.swooshencoders.angle45();
+	//Robot.swooshencoders.checkForGear();
+	//Robot.swooshencoders.angle45();
+	
 }
 }
