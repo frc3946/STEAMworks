@@ -26,7 +26,7 @@ public class GearExtend extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.swooshencoders.angle180();
+    	Robot.swooshencoders.angleUp(180);
 
         	}
 
@@ -37,7 +37,7 @@ public class GearExtend extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.swooshencoders.angle45();
+    	Robot.swooshencoders.angleDown(45);
     }
 
     // Called when another command which requires one or more of the same
