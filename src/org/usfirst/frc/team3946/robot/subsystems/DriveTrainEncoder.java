@@ -50,4 +50,12 @@ public class DriveTrainEncoder extends Subsystem {
     		RobotMap.fLeft.disable();
         	RobotMap.fRight.disable();
   }
+	public static void robotdrive(double d, double e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public static double getAngle() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     }
