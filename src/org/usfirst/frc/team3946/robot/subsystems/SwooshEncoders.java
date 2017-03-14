@@ -36,8 +36,8 @@ public class SwooshEncoders extends Subsystem {
     
     public void angleUp(int i) {
     	this.angle = getAngle();
-    	while (angle < i) {
-    		swooshTalon.set(.5); 
+    	while (this.angle < i) {
+    		swooshTalon.set(1.0); 
     		this.angle = getAngle();
     	}
 //    	else {
@@ -48,7 +48,7 @@ public class SwooshEncoders extends Subsystem {
     public void angleDown(int i) {
     	this.angle = getAngle();
     	while (angle > i) {
-    		swooshTalon.set(-.5);  
+    		swooshTalon.set(-.9);  
     		this.angle = getAngle();
     	}
 //    	else {

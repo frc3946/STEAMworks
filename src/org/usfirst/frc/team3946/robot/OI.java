@@ -43,7 +43,7 @@ public OI() {
 	gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();
 	//Robot.swooshencoders.checkForGear();
-	Robot.swooshencoders.angleUp(45);
+	//Robot.swooshencoders.angleUp(45);
 	
 }
 }
