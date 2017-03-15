@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
 		controllerSelector.addDefault("XboxController", "XboxController");
 		controllerSelector.addObject("Joystick", "Joystick");
 		SmartDashboard.putData("Controller Chooser", controllerSelector);
+		
 	}
 
 	/**
@@ -104,6 +105,7 @@ public class Robot extends IterativeRobot {
 		
 		if (autonomousCommand != null) 
 			autonomousCommand.start();
+	
 	}
 
 
