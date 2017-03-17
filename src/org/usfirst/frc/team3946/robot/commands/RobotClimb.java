@@ -19,11 +19,12 @@ public class RobotClimb extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    Robot.climbmotor.forward();
+       	Robot.climbmotor.forward();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+ 
     	double value = RobotMap.fingerTips.getValue();
     	if (value >= 2500) {
     		Robot.climbmotor.stop();

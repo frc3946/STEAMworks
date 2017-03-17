@@ -38,7 +38,7 @@ public class GearExtend extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//Robot.swooshencoders.angleDown(20); THIS GOES RIGHT BACK TO THE 90 DEGREES
-    	Robot.swooshencoders.angleDown(-18);
+    	Robot.swooshencoders.angleDown(-5);
     }
 
     // Called when another command which requires one or more of the same

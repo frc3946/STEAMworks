@@ -42,7 +42,7 @@ public OI() {
 	RobotMap.bRight.setPosition(0);
 	gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();
-	//Robot.swooshencoders.checkForGear();
+
 	//Robot.swooshencoders.angleUp(45);
 	
 }

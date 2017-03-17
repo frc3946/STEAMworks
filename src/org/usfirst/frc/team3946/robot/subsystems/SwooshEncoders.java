@@ -106,10 +106,19 @@ public class SwooshEncoders extends Subsystem {
     	boolean test1 = RobotMap.lightOne.get();
       	boolean test2 = RobotMap.lightTwo.get();
       	boolean test3 = RobotMap.lightThree.get();
-       	//if (test1 == true || test2 == true || test3 == true) {
-    			//Robot.swooshencoders.angle90();
-       	//}
-    	
+     // 	this.angle = getAngle();
+//      	while (this.angle <= -10) {
+//			
+//		}
+       	if (this.angle < -5 && (test1 == false || test2 == false || test3 == false)) {
+    			Robot.swooshencoders.angleUp(5);
+    			//swooshTalon.set(0);
+    			//while (this.angle >= 0) {
+    				//swooshTalon.set(0);
+    				//this.angle = getAngle();
+    			}
+       //	}
+    	//swooshTalon.set(0);
     }
 }
 
