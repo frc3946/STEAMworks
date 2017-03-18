@@ -4,6 +4,7 @@ package org.usfirst.frc.team3946.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -33,6 +34,7 @@ public class Robot extends IterativeRobot {
 	public static ClimbMotor climbmotor = new ClimbMotor();
 	public static SendableChooser<String> controllerSelector;
 	public static SendableChooser<String> cameraSelector;
+	RobotDrive drive; 
 	double distance;
 	
 	//autonomous code?
@@ -62,6 +64,7 @@ public class Robot extends IterativeRobot {
 		controllerSelector.addDefault("XboxController", "XboxController");
 		controllerSelector.addObject("Joystick", "Joystick");
 		SmartDashboard.putData("Controller Chooser", controllerSelector);
+		drive = new RobotDrive(RobotMap.bLeft, RobotMap.bRight, RobotMap.fLeft, RobotMap.fRight);
 		
 	}
 
@@ -115,34 +118,35 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void AutonomousPeriodic() {
-		 distance = Robot.driveTrainEncoder.getRightDistance();
-		 if (distance >= 120) {
-				Robot.drivetrain.Drive(0.0, 0.0);
-				Timer.delay(3.0);
-				Robot.drivetrain.Drive(0.1, 0.1);
-					if (distance <= 0) {
-					Robot.drivetrain.Drive(0.0, 0.0);
-					while (isAutonomous() && isEnabled()) {
-						double angle = DriveTrainEncoder.getAngle();
-						DriveTrainEncoder.tankdrive(-1.0, -90 * -0.2); //?Code to get the robot to turn?
-					}
-			} 
-		}
-		//double distance = Robot.driveTrainEncoder.getRightDistance();
-		Scheduler.getInstance().run();
-		//RobotMap.fRight.setPosition(0);
-		SmartDashboard.putNumber("Actual Right Distance",
-			Robot.driveTrainEncoder.getRightDistance());
-
+//		 distance = Robot.driveTrainEncoder.getRightDistance();
+//		 if (distance >= 120) {
+//				Robot.drivetrain.Drive(0.0, 0.0);
+//				Timer.delay(3.0);
+//				Robot.drivetrain.Drive(0.1, 0.1);
+//					if (distance <= 0) {
+//					Robot.drivetrain.Drive(0.0, 0.0);
+//					while (isAutonomous() && isEnabled()) {
+//						double angle = DriveTrainEncoder.getAngle();
+//						 //?Code to get the robot to turn?
+//					}
+//			} 
+//		}
+//		//double distance = Robot.driveTrainEncoder.getRightDistance();
+//		Scheduler.getInstance().run();
+//		//RobotMap.fRight.setPosition(0);
+//		SmartDashboard.putNumber("Actual Right Distance",
+//			Robot.driveTrainEncoder.getRightDistance());
+		
+		drive.tankDrive(.2, .2);
+		Timer.delay(3.0);
+		drive.tankDrive(0,0);
+		Timer.delay(3.0);
 		
 	}
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
@@ -152,11 +156,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Actual Right Distance",
-				Robot.driveTrainEncoder.getRightDistance());
+				-Robot.driveTrainEncoder.getRightDistance());
 		SmartDashboard.putNumber("Actual Left Distance",
-				Robot.driveTrainEncoder.getLeftDistance());
+				-Robot.driveTrainEncoder.getLeftDistance());
+		
+		
+		
+		double axisL = oi.xbController.getLeftStickY();
+		double axisR = oi.xbController.getRightStickY();
+		oi.xbController.setDeadband(.2);
+		RobotMap.bRight.set(-axisR);
+		RobotMap.bLeft.set(axisL);
+		RobotMap.fRight.set(-axisR);
+		RobotMap.fLeft.set(axisL);
 
 	}
 

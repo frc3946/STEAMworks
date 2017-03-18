@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TankDrive extends Command {
 
-	double rightStick = Robot.oi.leftController.getLeftStickY();
-	double leftStick = Robot.oi.leftController.getRightStickY();
+//	double rightStick = Robot.oi.xbController.getLeftStickY();
+//	double leftStick = Robot.oi.xbController.getRightStickY();
 	
 	public TankDrive() {
         // Use requires() here to declare subsystem dependencies
@@ -30,7 +30,7 @@ public class TankDrive extends Command {
 //    	double rightStick = Robot.oi.leftController.getLeftStickY();
 //    	double leftStick = Robot.oi.leftController.getRightStickY();
 //    	Robot.drivetrain.Drive(leftTrain, rightTrain);
-    	Robot.drivetrain.tankDrive(leftStick, rightStick);
+//    	Robot.drivetrain.tankDrive(leftStick, rightStick);
     	
     }
 
