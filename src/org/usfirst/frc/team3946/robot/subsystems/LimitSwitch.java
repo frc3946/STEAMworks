@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LimitSwitch extends Subsystem {
 	
-	DigitalInput limitSwitch = new DigitalInput(0);
+	DigitalInput limitSwitch = new DigitalInput(1);
 	Counter counter = new Counter(limitSwitch);
 
 	public void robotInit() {

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 
+import org.usfirst.frc.team3946.robot.commands.AutoTravel;
 import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
@@ -52,7 +53,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 	// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
-		//autonomousCommand = new ();
+		autonomousCommand = new AutoTravel();
 	}
 
 	public void autonmousInit() {
@@ -64,6 +65,19 @@ public class Robot extends IterativeRobot {
  * This function is called periodically during autonomous
  */
 	public void autonomousPeriodic1() {
+		SmartDashboard.putNumber("Actual Left Distance",
+				Robot.driveTrainEncoder.getLeftDistance());
+		double distance = Robot.driveTrainEncoder.getLeftDistance();
+		while (distance <= 150) {
+    		Robot.drivetrain.Drive(-.3, -.3);
+    		distance = Robot.driveTrainEncoder.getLeftDistance();
+    		
+    	}
+    	Robot.drivetrain.Drive(0, 0);
+    
+		
+		//SmartDashboard.putNumber("Actual Left Distance",
+			//	Robot.driveTrainEncoder.getLeftDistance());
 		Scheduler.getInstance().run();	}
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -78,8 +92,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-	//	autonomousCommand = chooser.getSelected();
-		if (Timer.getMatchTime() == 15) {	
+	
 	//	double driveTo = Robot.driveTrainEncoder.getRightDistance();
 		
 //		 (driveTo >= 90) {
@@ -94,9 +107,11 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) 
 			autonomousCommand.start();
-		}}
+		
+		
+		}
 	
 
 	/**
@@ -104,6 +119,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
+
 		Scheduler.getInstance().run();
 		
 	}

@@ -16,6 +16,7 @@ import libraries.XboxController;
 
 import org.usfirst.frc.team3946.robot.commands.WinchStop;
 import org.usfirst.frc.team3946.robot.commands.GearExtend;
+import org.usfirst.frc.team3946.robot.commands.ManualAlign;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -26,7 +27,7 @@ public class OI {
 	Button winchButtonUp = new JoystickButton(driveController2, 1);
 	Button winchButtonDown = new JoystickButton(driveController1, 1);
 	Button gearPusher = new JoystickButton(driveController2, 3);
-	Button sendToZero = new JoystickButton(driveController2, 4);
+	Button manual90 = new JoystickButton(driveController2, 4);
 	
 	
 	public XboxController leftController = new XboxController(2);
@@ -42,8 +43,7 @@ public OI() {
 	RobotMap.bRight.setPosition(0);
 	gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();
-
-	//Robot.swooshencoders.angleUp(45);
+	manual90.whenPressed(new ManualAlign());
 	
 }
 }
