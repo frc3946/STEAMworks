@@ -38,6 +38,8 @@ public class DriveTrainEncoder extends Subsystem {
     	 
     		double rawData = RobotMap.fRight.getEncPosition();
         	return - rawData/ticksCal;
+        	
+        	
      }
      
      public double getLeftDistance()
