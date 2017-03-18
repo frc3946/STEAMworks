@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
 		controllerSelector.addDefault("XboxController", "XboxController");
 		controllerSelector.addObject("Joystick", "Joystick");
 		SmartDashboard.putData("Controller Chooser", controllerSelector);
+		
 	}
 
 	/**
@@ -104,6 +105,7 @@ public class Robot extends IterativeRobot {
 		
 		if (autonomousCommand != null) 
 			autonomousCommand.start();
+	
 	}
 
 
@@ -120,6 +122,10 @@ public class Robot extends IterativeRobot {
 				Robot.drivetrain.Drive(0.1, 0.1);
 					if (distance <= 0) {
 					Robot.drivetrain.Drive(0.0, 0.0);
+					while (isAutonomous() && isEnabled()) {
+						double angle = DriveTrainEncoder.getAngle();
+						DriveTrainEncoder.tankdrive(-1.0, -90 * -0.2); //?Code to get the robot to turn?
+					}
 			} 
 		}
 		//double distance = Robot.driveTrainEncoder.getRightDistance();
