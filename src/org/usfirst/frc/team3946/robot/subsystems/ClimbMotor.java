@@ -8,6 +8,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -36,7 +37,12 @@ public class ClimbMotor extends Subsystem {
     }
     
     public void stop() {
-    	winchMotor.set(0.0);
+    	winchMotor.set(-0.08);
+    }
+    public void releaseMag() {
+    	winchMotor.set(-.3);
+    	Timer.delay(.1);
+    	winchMotor.set(0);
     }
 }
 

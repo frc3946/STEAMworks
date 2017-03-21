@@ -14,6 +14,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 
 import org.usfirst.frc.team3946.robot.commands.AutoTravel;
+import org.usfirst.frc.team3946.robot.commands.GearDelivery;
 import org.usfirst.frc.team3946.robot.commands.TankDrive;
 import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
@@ -53,63 +54,19 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 	// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
-		autonomousCommand = new AutoTravel();
+		autonomousCommand = new GearDelivery();
 	}
 
-	public void autonmousInit() {
-		// schedule the autonomous command () 
-		if (autonomousCommand != null) autonomousCommand.start();
-	}
-
-/**
- * This function is called periodically during autonomous
- */
-	public void autonomousPeriodic1() {
-		SmartDashboard.putNumber("Actual Left Distance",
-				Robot.driveTrainEncoder.getLeftDistance());
-		double distance = Robot.driveTrainEncoder.getLeftDistance();
-		while (distance <= 150) {
-    		Robot.drivetrain.Drive(-.3, -.3);
-    		distance = Robot.driveTrainEncoder.getLeftDistance();
-    		
-    	}
-    	Robot.drivetrain.Drive(0, 0);
-    
-		
-		//SmartDashboard.putNumber("Actual Left Distance",
-			//	Robot.driveTrainEncoder.getLeftDistance());
-		Scheduler.getInstance().run();	}
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
+	
 	@Override
 	public void autonomousInit() {
-	
-	//	double driveTo = Robot.driveTrainEncoder.getRightDistance();
-		
-//		 (driveTo >= 90) {
-	//		Robot.drivetrain.Drive(0.0, 0.0);
-	//		Robot.driveTrainEncoder.stopEncoders();		
-//			}
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		autonomousCommand = new GearDelivery();
 		if (autonomousCommand != null) 
 			autonomousCommand.start();
-		
+		SmartDashboard.putNumber("Actual Right Distance",
+				Robot.driveTrainEncoder.getRightDistance());
+		SmartDashboard.putNumber("Actual Left Distance",
+				Robot.driveTrainEncoder.getLeftDistance());
 		
 		}
 	
@@ -119,8 +76,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-
-
 		Scheduler.getInstance().run();
 		
 	}
@@ -132,8 +87,10 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Robot.climbmotor.releaseMag();
 	}
 
 	/**

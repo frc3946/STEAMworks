@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoTravel extends Command {
-	double distance = Robot.driveTrainEncoder.getLeftDistance();
+	double went;
 
     public AutoTravel() {
         // Use requires() here to declare subsystem dependencies
@@ -22,15 +22,18 @@ public class AutoTravel extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    	while (distance <= 150) {
-    		Robot.drivetrain.Drive(-.3, -.3);
-    	}
     	Robot.drivetrain.Drive(0, 0);
+    	this.went = Robot.driveTrainEncoder.getLeftDistance();
+    	while (this.went <= 115) {
+    		Robot.drivetrain.Drive(-.3, -.3);
+    		this.went = Robot.driveTrainEncoder.getLeftDistance();
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

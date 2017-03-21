@@ -28,6 +28,7 @@ public class OI {
 	Button winchButtonDown = new JoystickButton(driveController1, 1);
 	Button gearPusher = new JoystickButton(driveController2, 3);
 	Button manual90 = new JoystickButton(driveController2, 4);
+	Button releaseMag = new JoystickButton(driveController1, 3);
 	
 	
 	public XboxController leftController = new XboxController(2);
@@ -44,6 +45,6 @@ public OI() {
 	gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();
 	manual90.whenPressed(new ManualAlign());
-	
+
 }
 }

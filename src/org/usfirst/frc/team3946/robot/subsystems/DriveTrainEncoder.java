@@ -14,7 +14,7 @@ import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
  */
 public class DriveTrainEncoder extends Subsystem {
 
-	double ticksCal = 19.11; //360 divided by wheel diameter times 3.14 
+	double ticksCal = 18.86; //360 divided by wheel diameter times 3.14 
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	//Encoder rightEncoder = new Encoder(RobotMap.rightWheelEncoderA, RobotMap.rightWheelEncoderB, true, Encoder.EncodingType.k4X);
@@ -27,7 +27,9 @@ public class DriveTrainEncoder extends Subsystem {
     		RobotMap.bLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     		RobotMap.bRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     		RobotMap.bRight.configEncoderCodesPerRev(360);
-    		RobotMap.bLeft.configEncoderCodesPerRev(360);	
+    		RobotMap.bLeft.configEncoderCodesPerRev(360);
+    		
+    		
     		//black blue orange yellow
 
         	
