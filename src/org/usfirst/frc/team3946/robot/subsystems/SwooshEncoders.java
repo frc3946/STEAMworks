@@ -5,6 +5,7 @@ import org.usfirst.frc.team3946.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -55,70 +56,22 @@ public class SwooshEncoders extends Subsystem {
     		swooshTalon.set(0);
 //    	}
     }	
-//    public void angle45() {
-//    	angle = getAngle();
-//    	if (angle > 45) {
-//    		swooshTalon.set(-.4); 
-//    		angle = getAngle();
-//    		if (angle == 45) {
-//    			swooshTalon.set(0);
-//    		}
-//    	}
-//    	else if (angle < 45) {
-//    		swooshTalon.set(.4);
-//    		angle = getAngle();
-//    		if (angle == 45) {
-//    			swooshTalon.set(0);
-//    		}
-//    	}
-//    	else {
-//    		swooshTalon.set(0);
-//    	}
-//    }
-//    public void angle90() {
-//    	angle = getAngle();
-//    	if (angle > 90) {
-//    		swooshTalon.set(-1.0); 
-//    	}
-//    	else if (angle < 90) {
-//    		swooshTalon.set(1.0);
-//    	}
-//    	else {
-//    		swooshTalon.set(0);
-//    	}
-//    }
-//    public void angle180() {
-//    	angle = getAngle();
-//    	//while (angle > 180) {
-//    		//swooshTalon.set(-1.0); 
-//    //	}
-//    	while (angle < 180) {
-//    		swooshTalon.set(0.5);
-//    		if (angle >= 180) {
-//    			swooshTalon.set(0);
-//    		}
-//    	}
-//    	//else {
-//    	
-//    //	}
-//    }
+    public void manualSet() {
+    	swooshTalon.set(-.3);
+    	Timer.delay(1.0);
+    	swooshTalon.set(0.0);
+    	Robot.swooshencoders.swooshEncoder.reset();
+    }
+
     public void checkForGear() {
     	boolean test1 = RobotMap.lightOne.get();
       	boolean test2 = RobotMap.lightTwo.get();
       	boolean test3 = RobotMap.lightThree.get();
-     // 	this.angle = getAngle();
-//      	while (this.angle <= -10) {
-//			
-//		}
-       	if (this.angle < -5 && (test1 == false || test2 == false || test3 == false)) {
+      	if (this.angle < -5 && (test1 == false || test2 == false || test3 == false)) {
     			Robot.swooshencoders.angleUp(5);
-    			//swooshTalon.set(0);
-    			//while (this.angle >= 0) {
-    				//swooshTalon.set(0);
-    				//this.angle = getAngle();
+
     			}
-       //	}
-    	//swooshTalon.set(0);
+     
     }
 }
 

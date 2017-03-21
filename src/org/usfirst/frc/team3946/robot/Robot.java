@@ -60,13 +60,11 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void autonomousInit() {
+		RobotMap.bLeft.setPosition(0);
+		RobotMap.bRight.setPosition(0);
 		autonomousCommand = new GearDelivery();
 		if (autonomousCommand != null) 
 			autonomousCommand.start();
-		SmartDashboard.putNumber("Actual Right Distance",
-				Robot.driveTrainEncoder.getRightDistance());
-		SmartDashboard.putNumber("Actual Left Distance",
-				Robot.driveTrainEncoder.getLeftDistance());
 		
 		}
 	
@@ -87,7 +85,6 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Robot.climbmotor.releaseMag();
@@ -98,11 +95,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-//	double angle = Robot.swooshencoders.getAngle();
-//		while (angle <= 5) {
 		Robot.swooshencoders.checkForGear();
-//		angle = Robot.swooshencoders.getAngle();
-//		}
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Actual Right Distance",
 				Robot.driveTrainEncoder.getRightDistance());
