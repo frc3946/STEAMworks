@@ -39,6 +39,9 @@ public class ClimbMotor extends Subsystem {
     public void stop() {
     	winchMotor.set(-0.08);
     }
+    public void reallyStop() {
+    	winchMotor.set(0);
+    }
     public void releaseMag() {
     	winchMotor.set(-.3);
     	Timer.delay(.1);

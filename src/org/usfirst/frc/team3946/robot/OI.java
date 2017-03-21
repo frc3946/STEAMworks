@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team3946.robot.commands.RobotClimb;
+import org.usfirst.frc.team3946.robot.commands.WinchClinch;
 
 import com.ctre.CANTalon;
 
@@ -24,10 +25,11 @@ import org.usfirst.frc.team3946.robot.commands.ManualAlign;
 public class OI {
 	public Joystick driveController1 = new Joystick(0);
 	public Joystick driveController2 = new Joystick(1);
-	Button winchButtonUp = new JoystickButton(driveController2, 1);
+	Button winchButtonUp = new JoystickButton(driveController2, 10);
 	Button winchButtonDown = new JoystickButton(driveController1, 1);
 	Button gearPusher = new JoystickButton(driveController2, 3);
 	Button manual90 = new JoystickButton(driveController2, 4);
+	Button manualSTOP = new JoystickButton(driveController2, 11);
 	//Button manualSetToZero = new JoystickButton(driveController1, 3);
 	
 	
@@ -40,7 +42,7 @@ public class OI {
 
 public OI() {
 	winchButtonUp.whenPressed(new RobotClimb());
-	winchButtonUp.cancelWhenPressed(new RobotClimb());
+	manualSTOP.whenPressed(new WinchClinch());
 	winchButtonDown.whenPressed(new WinchStop());
 	gearPusher.whenPressed(new GearExtend());
 	Robot.swooshencoders.swooshEncoder.reset();

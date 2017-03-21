@@ -36,7 +36,7 @@ public class DriveTrainEncoder extends Subsystem {
         public double getRightDistance()
         {
         	double rawData = RobotMap.bRight.getEncPosition();
-        	return - rawData*ticksCal;
+        	return - rawData/ticksCal;
         	
         }
         
@@ -44,7 +44,7 @@ public class DriveTrainEncoder extends Subsystem {
         public double getLeftDistance()
         {
         	double rawLeftData = RobotMap.bLeft.getEncPosition();
-        	return rawLeftData*ticksCal;
+        	return rawLeftData/ticksCal;
         }
         
         public void stopEncoders()

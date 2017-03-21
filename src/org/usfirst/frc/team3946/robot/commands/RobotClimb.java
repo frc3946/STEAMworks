@@ -27,8 +27,8 @@ public class RobotClimb extends Command {
  
     	double value = RobotMap.fingerTips.getValue();
     	Robot.climbmotor.forward();
-    	while (value >= 2500) {
-    		Robot.climbmotor.stop();
+    	while (value >= 2000) {
+    		Robot.climbmotor.reallyStop();
     		value = RobotMap.fingerTips.getValue();
     	}
 
@@ -44,10 +44,13 @@ public class RobotClimb extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.climbmotor.reallyStop();
+    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

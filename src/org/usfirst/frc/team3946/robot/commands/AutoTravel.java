@@ -22,9 +22,11 @@ public class AutoTravel extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
+    	
     	Robot.drivetrain.Drive(0, 0);
     	this.went = Robot.driveTrainEncoder.getLeftDistance();
-    	while (this.went <= 72.5) {
+    	
+    	while (this.went <= 82.5) {
     		Robot.drivetrain.Drive(-.3, -.3);
     		this.went = Robot.driveTrainEncoder.getLeftDistance();
     	}
