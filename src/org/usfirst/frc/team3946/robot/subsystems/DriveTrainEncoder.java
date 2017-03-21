@@ -14,9 +14,7 @@ import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
  */
 public class DriveTrainEncoder extends Subsystem {
 
-	double ticksCal = 18.86; //360 divided by wheel diameter times 3.14 
-	// Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	double ticksCal = 19.099; // 360 / wheel diameter * 3.14 
 	//Encoder rightEncoder = new Encoder(RobotMap.rightWheelEncoderA, RobotMap.rightWheelEncoderB, true, Encoder.EncodingType.k4X);
     //Encoder leftEncoder = new Encoder(RobotMap.leftWheelEncoderA, RobotMap.leftWheelEncoderB, true, Encoder.EncodingType.k4X);
     public void initDefaultCommand() {
@@ -38,7 +36,7 @@ public class DriveTrainEncoder extends Subsystem {
         public double getRightDistance()
         {
         	double rawData = RobotMap.bRight.getEncPosition();
-        	return - rawData/ticksCal;
+        	return - rawData*ticksCal;
         	
         }
         
@@ -46,7 +44,7 @@ public class DriveTrainEncoder extends Subsystem {
         public double getLeftDistance()
         {
         	double rawLeftData = RobotMap.bLeft.getEncPosition();
-        	return rawLeftData/ticksCal;
+        	return rawLeftData*ticksCal;
         }
         
         public void stopEncoders()
