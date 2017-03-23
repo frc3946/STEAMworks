@@ -16,29 +16,24 @@ public class DriveTrain extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	public CANTalon fRight = new CANTalon(RobotMap.fRightDriveTalon);
-	public CANTalon fLeft = new CANTalon(RobotMap.fLeftDriveTalon);
-	public CANTalon bRight = new CANTalon(RobotMap.bRightDriveTalon);
-	public CANTalon bLeft = new CANTalon(RobotMap.bLeftDriveTalon);
-	// public RobotDrive robotDrive = new RobotDrive(fLeft, bLeft, fRight,
-	// bRight);
-	public RobotDrive robotDrive = new RobotDrive(fLeft, fRight);
+	public RobotDrive robotDrive = new RobotDrive(RobotMap.fLeft, RobotMap.fRight);
+	
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new TankDrive());
 //		robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
 //		robotDrive.setInvertedMotor(MotorType.kRearLeft, true);
-		LiveWindow.addActuator("Drive Motors", "fRight", fRight);
-		LiveWindow.addActuator("Drive Motors", "fLeft", fLeft);
-		LiveWindow.addActuator("Drive Motors", "bRight", bRight);
-		LiveWindow.addActuator("Drive Motors", "bLeft", bLeft);
+		LiveWindow.addActuator("Drive Motors", "fRight", RobotMap.fRight);
+		LiveWindow.addActuator("Drive Motors", "fLeft", RobotMap.fLeft);
+		LiveWindow.addActuator("Drive Motors", "bRight", RobotMap.bRight);
+		LiveWindow.addActuator("Drive Motors", "bLeft", RobotMap.bLeft);
 	}
 
 	public void Drive(double speedLeft, double speedRight) {
-		fRight.set(speedRight);
-		fLeft.set(speedLeft);
-		bRight.set(speedRight);
-		bLeft.set(speedLeft);
+		RobotMap.fRight.set(speedRight);
+		RobotMap.fLeft.set(speedLeft);
+		RobotMap.bRight.set(speedRight);
+		RobotMap.bLeft.set(speedLeft);
 	}
 
 	public void ReverseDrive() {

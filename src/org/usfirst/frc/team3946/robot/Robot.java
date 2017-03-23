@@ -1,15 +1,23 @@
 
 package org.usfirst.frc.team3946.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Preferences;
+=======
+import edu.wpi.first.wpilibj.Timer;
+>>>>>>> cdc5f962671dc6da30cff12f3a1519ed1d6a7c9d
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 
+<<<<<<< HEAD
 //import org.opencv.core.Mat;
 //import org.opencv.core.Rect;
 //import org.opencv.imgproc.Imgproc;
@@ -25,9 +33,19 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  
+=======
+import org.usfirst.frc.team3946.robot.commands.TankDrive;
+import org.usfirst.frc.team3946.robot.subsystems.ClimbMotor;
+>>>>>>> cdc5f962671dc6da30cff12f3a1519ed1d6a7c9d
 //import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
 //import org.usfirst.frc.team3946.robot.subsystems.driveTrain;
 import org.usfirst.frc.team3946.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3946.robot.subsystems.DriveTrainEncoder;
+import org.usfirst.frc.team3946.robot.subsystems.LimitSwitch;
+import org.usfirst.frc.team3946.robot.subsystems.SwooshEncoders;
+
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -70,14 +88,21 @@ public class Robot extends IterativeRobot {
 //	
 //	private final Object imgLock = new Object();
 
+
+	public static DriveTrainEncoder driveTrainEncoder = new DriveTrainEncoder();
+	public static ClimbMotor climbmotor = new ClimbMotor();
+	public static LimitSwitch limitswitch = new LimitSwitch();
+	public static SwooshEncoders swooshencoders = new SwooshEncoders();
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	
+	UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	@Override
 	public void robotInit() {
 //		CameraServer.getInstance().startAutomaticCapture(); 
 		
@@ -85,6 +110,7 @@ public class Robot extends IterativeRobot {
 		UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
 		
 		oi = new OI();
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
@@ -97,23 +123,21 @@ public class Robot extends IterativeRobot {
 		controllerSelector.addDefault("XboxController", "XboxController");
 		controllerSelector.addObject("Joystick", "Joystick");
 		SmartDashboard.putData("Controller Chooser", controllerSelector);
+
+	// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
+		//autonomousCommand = new ();
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
-
+	public void autonmousInit() {
+		// schedule the autonomous command () 
+		if (autonomousCommand != null) autonomousCommand.start();
 	}
 
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
-
+/**
+ * This function is called periodically during autonomous
+ */
+	public void autonomousPeriodic1() {
+		Scheduler.getInstance().run();	}
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -127,8 +151,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
+	//	autonomousCommand = chooser.getSelected();
+		if (Timer.getMatchTime() == 15) {	
+	//	double driveTo = Robot.driveTrainEncoder.getRightDistance();
+		
+//		 (driveTo >= 90) {
+	//		Robot.drivetrain.Drive(0.0, 0.0);
+	//		Robot.driveTrainEncoder.stopEncoders();		
+//			}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -139,19 +169,27 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
-	}
+		}}
+	
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
 	
 		
 }
 
+		Scheduler.getInstance().run();
+		
+	}
+
+
 	@Override
 	public void teleopInit() {
+	
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -165,7 +203,22 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+//	double angle = Robot.swooshencoders.getAngle();
+//		while (angle <= 5) {
+		Robot.swooshencoders.checkForGear();
+//		angle = Robot.swooshencoders.getAngle();
+//		}
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Actual Right Distance",
+				Robot.driveTrainEncoder.getRightDistance());
+		SmartDashboard.putNumber("Actual Left Distance",
+				Robot.driveTrainEncoder.getLeftDistance());
+	SmartDashboard.putNumber("Encoder Winch",
+				Robot.swooshencoders.getAngle());
+	SmartDashboard.putNumber("FingerTips", RobotMap.fingerTips.getValue());
+	SmartDashboard.putBoolean("gear?",  RobotMap.lightOne.get());
+	SmartDashboard.putBoolean("gear2?",  RobotMap.lightTwo.get());
+	SmartDashboard.putBoolean("gear3?",  RobotMap.lightThree.get());
 	}
 
 	/**
