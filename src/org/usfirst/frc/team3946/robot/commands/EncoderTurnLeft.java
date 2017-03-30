@@ -8,34 +8,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoTravel extends Command {
-	double went;
+public class EncoderTurnLeft extends Command {
+	double goes;
 
-    public AutoTravel() {
+    public EncoderTurnLeft() {
         // Use requires() here to declare subsystem dependencies
-		requires(Robot.drivetrain);
        // requires(Robot.driveTrainEncoder);
+        requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
-    	Robot.drivetrain.Drive(.3, -.3);
-    	//this.went = Robot.driveTrainEncoder.getRightDistance();
-    	Timer.delay(5.0);
-    	Robot.drivetrain.Drive(0, 0);
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() { 
-    	
-    	//while (this.went <= 275) {
-    		//Robot.drivetrain.Drive(.2, -.2);
-    		//this.went = Robot.driveTrainEncoder.getRightDistance();
-    	}
-    	
-    
+    protected void execute() {
+    	Robot.drivetrain.Drive(0.0, -.3);
+    	Timer.delay(2.0);
+    	Robot.drivetrain.Drive(0.0, 0.0);
+ 
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -49,5 +41,6 @@ public class AutoTravel extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

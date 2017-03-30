@@ -17,17 +17,18 @@ public class GearExtend extends Command {
     public GearExtend() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.swooshencoders);
-        requires(Robot.drivetrain);
+      //  requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.swooshencoders.timedUpForward();
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.swooshencoders.angleUp(110);
+//    	Robot.swooshencoders.angleUp(90);
 
         	}
 
@@ -39,7 +40,8 @@ public class GearExtend extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//Robot.swooshencoders.angleDown(20); THIS GOES RIGHT BACK TO THE 90 DEGREES
-    	Robot.swooshencoders.angleDown(-5);
+    	Robot.swooshencoders.timedUpBack();
+    	
     }
 
     // Called when another command which requires one or more of the same

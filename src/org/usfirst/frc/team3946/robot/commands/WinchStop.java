@@ -15,11 +15,13 @@ public class WinchStop extends Command {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.climbmotor);
          requires(Robot.limitswitch);
+        // requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.climbmotor.reverse();
+    
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,7 +31,8 @@ public class WinchStop extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.limitswitch.operatorControl();
+    	//return Robot.limitswitch.operatorControl();
+    	return true;
     }
 
     // Called once after isFinished returns true

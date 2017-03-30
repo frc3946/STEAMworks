@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3946.robot.commands;
 
 import org.usfirst.frc.team3946.robot.Robot;
+import org.usfirst.frc.team3946.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,31 +9,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoTravel extends Command {
-	double went;
-
-    public AutoTravel() {
+public class DriveUntilGearPlace extends Command {
+	double finalLeg;
+    public DriveUntilGearPlace() {
         // Use requires() here to declare subsystem dependencies
-		requires(Robot.drivetrain);
-       // requires(Robot.driveTrainEncoder);
+      requires(Robot.driveTrainEncoder);
+      requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
-    	Robot.drivetrain.Drive(.3, -.3);
-    	//this.went = Robot.driveTrainEncoder.getRightDistance();
-    	Timer.delay(5.0);
-    	Robot.drivetrain.Drive(0, 0);
+    	RobotMap.bLeft.setPosition(0);
+    	RobotMap.bRight.setPosition(0);
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() { 
-    	
-    	//while (this.went <= 275) {
-    		//Robot.drivetrain.Drive(.2, -.2);
-    		//this.went = Robot.driveTrainEncoder.getRightDistance();
+    protected void execute() {
+    		Robot.drivetrain.Drive(.3, -.3);
+    		Timer.delay(1.5);
+    		Robot.drivetrain.Drive(0, 0);
     	}
     	
     

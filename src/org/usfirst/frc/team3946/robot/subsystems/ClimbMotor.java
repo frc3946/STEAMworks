@@ -33,8 +33,10 @@ public class ClimbMotor extends Subsystem {
     	}
     
     public void reverse() {
-    	winchMotor.set(-0.5);
-    }
+    	winchMotor.set(-1.0);
+    	Timer.delay(1.0);
+    	winchMotor.set(-.08);
+    		}
     
     public void stop() {
     	winchMotor.set(-0.08);
@@ -43,7 +45,7 @@ public class ClimbMotor extends Subsystem {
     	winchMotor.set(0);
     }
     public void releaseMag() {
-    	winchMotor.set(-.3);
+    	winchMotor.set(-.8);
     	Timer.delay(.1);
     	winchMotor.set(0);
     }

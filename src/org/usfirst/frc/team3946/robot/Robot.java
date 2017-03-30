@@ -46,6 +46,9 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
+	UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture();
+	
+	public static SendableChooser<String> autoPos;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -53,6 +56,13 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
+		
+		autoPos = new SendableChooser<>();
+		autoPos.addDefault("Middle", "middle");
+		autoPos.addObject("Left", "left");
+		autoPos.addObject("Right", "right");
+		SmartDashboard.putData("Middle", autoPos);
+		
 	// instantiate the command used for the autonomous period autonomous Command = new RobotDrive();
 		autonomousCommand = new GearDelivery();
 	}
@@ -75,6 +85,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		Robot.climbmotor.stop();
 		
 	}
 
@@ -88,6 +99,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Robot.climbmotor.releaseMag();
+		//Timer.delay(.01);
+		Robot.climbmotor.stop();
 	}
 
 	/**
@@ -97,6 +110,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Robot.swooshencoders.checkForGear();
 		Scheduler.getInstance().run();
+	
 		SmartDashboard.putNumber("Actual Right Distance",
 				Robot.driveTrainEncoder.getRightDistance());
 		SmartDashboard.putNumber("Actual Left Distance",
@@ -107,6 +121,7 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putBoolean("gear?",  RobotMap.lightOne.get());
 	SmartDashboard.putBoolean("gear2?",  RobotMap.lightTwo.get());
 	SmartDashboard.putBoolean("gear3?",  RobotMap.lightThree.get());
+	SmartDashboard.putBoolean("limit",  Robot.limitswitch.operatorControl());
 	}
 
 	/**

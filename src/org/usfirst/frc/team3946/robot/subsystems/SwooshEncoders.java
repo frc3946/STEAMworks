@@ -37,28 +37,31 @@ public class SwooshEncoders extends Subsystem {
     
     public void angleUp(int i) {
     	this.angle = getAngle();
-    	while (this.angle < i) {
-    		swooshTalon.set(1.0); 
-    		this.angle = getAngle();
+    	//double tempAngle = this.angle;
+   		//swooshTalon.set(1.0); 
+    	while (this.angle < i) {  		
+    			swooshTalon.set(1.0);
+    			this.angle = getAngle();
     	}
-//    	else {
     		swooshTalon.set(0);
-//    	}
+    	
+    		
     }	
     
     public void angleDown(int i) {
     	this.angle = getAngle();
-    	while (angle > i) {
-    		swooshTalon.set(-.9);  
-    		this.angle = getAngle();
+    	//double tempAngle = this.angle;
+    	if (this.angle >= i) {
+    		swooshTalon.set(-.9); 
     	}
-//    	else {
+    	else {
     		swooshTalon.set(0);
-//    	}
+    	}
+
     }	
     public void manualSet() {
     	swooshTalon.set(-.3);
-    	Timer.delay(1.0);
+    	Timer.delay(.9);
     	swooshTalon.set(0.0);
     	Robot.swooshencoders.swooshEncoder.reset();
     }
@@ -67,11 +70,30 @@ public class SwooshEncoders extends Subsystem {
     	boolean test1 = RobotMap.lightOne.get();
       	boolean test2 = RobotMap.lightTwo.get();
       	boolean test3 = RobotMap.lightThree.get();
+      	this.angle = getAngle();
       	if (this.angle < -5 && (test1 == false || test2 == false || test3 == false)) {
-    			Robot.swooshencoders.angleUp(5);
-
+       		angleUp(10);
+      		//swooshTalon.set(.9);
+        	//Timer.delay(.1);
+        	//swooshTalon.set(0);
+        	//Timer.delay(10);
     			}
      
+    }
+    public void timedUpForward() {
+    	swooshTalon.set(1.0);
+    	Timer.delay(.3);
+    	swooshTalon.set(0);
+    }
+    public void timedUpBack() {
+    	swooshTalon.set(-.9);
+    	Timer.delay(.5);
+    	swooshTalon.set(0);
+    }
+    public void manualGo() {
+    	swooshTalon.set(.9);
+    	Timer.delay(.1);
+    	swooshTalon.set(0);
     }
 }
 
